@@ -197,7 +197,7 @@ const sendFile = function( response, filename ) {
 # HTML / CSS
 
 1. There are four must have elements to create a valid / well-formed HTML page:
-- `<!doctype>
+- `<!doctype>`
 - `<html lang='en'>`
 - `<head>`
 - `<meta charset='utf-8'>`
