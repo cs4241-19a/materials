@@ -22,7 +22,7 @@ A couple of imoprtant things to point out:
 8. "use strict"
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 
-```
+```js
 // creates variable on global namespace
 !function() { test = 'blah' }()
 
@@ -34,14 +34,14 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ```
 
 9. Simple prototype demo
-```
+```js
 const ourprototype = { a: 1 }
 const ourobject = Object.create( ourprototype )
 console.log( ourobject.a ) // => 1 
 ```
 
 10. Simple closure demo / using the debugger in Chrome
-```
+```js
 const outer = function() {
   const thisWillBeEnclosed = 42
   
@@ -71,7 +71,7 @@ Three goals:
 - Show old server file by browsing the GitHub commit history
 - Change to reading file on demand
 
-```
+```js
 const http = require('http'),
       fs   = require('fs'),
       port = 3000
@@ -142,7 +142,7 @@ const mimeForExt = function( ext ) {
 - Provide proper error code
 
 ## Final Server
-```
+```js
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -167,7 +167,9 @@ const server = http.createServer( function( request,response ) {
 })
 
 server.listen( process.env.PORT || port )
-``
+```
+
+```js
 const sendFile = function( response, filename ) {
    // mime types: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
    const type = mime.getType( filename ) 
@@ -195,11 +197,11 @@ const sendFile = function( response, filename ) {
 # HTML / CSS
 
 1. There are four must have elements to create a valid / well-formed HTML page:
-- !doctype
-- <html lang='en'>
-- <head>
-- <meta charset='utf-8'>
-- <body>
+- `<!doctype>
+- `<html lang='en'>`
+- `<head>`
+- `<meta charset='utf-8'>`
+- `<body>`
   
 2. Semantic HTML
   - https://developer.mozilla.org/en-US/docs/Glossary/Semantics
