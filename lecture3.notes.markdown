@@ -37,7 +37,7 @@
     - 2015: ES6 (or ES2015)
   
 1. There are four must have elements to create a valid / well-formed HTML page:
-- <!doctype>
+- doctype
 - <html lang='en'>
 - <head>
 - <meta charset='utf-8'>
