@@ -37,11 +37,11 @@
     - 2015: ES6 (or ES2015)
   
 1. There are four must have elements to create a valid / well-formed HTML page:
-- <!doctype>
-- <html lang='en'>
-- <head>
-- <meta charset='utf-8'>
-- <body>
+- `doctype`
+- `<html lang='en'>`
+- `<head>`
+- `<meta charset='utf-8'>`
+- `<body>`
   
 2. Semantic HTML
   - https://developer.mozilla.org/en-US/docs/Glossary/Semantics
