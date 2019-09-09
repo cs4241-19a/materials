@@ -85,7 +85,7 @@ const bobBot = Object.create( RobotProto )
 ## I like classes. What's the problem with classes.
 No giant problems, really, and ES6 provides a nice syntax for them. However, using them hides that classes use prototypes behind the scenes... they don't behave like classes in traditional classical inheritance langauges (Java, C++ etc.). For example:
 
-```
+```js
   class Cheap {
     constructor( value ) {
       this.value = value
@@ -137,7 +137,7 @@ app.listen(3000)
 ## Writing middleware for POST requests
 - With this in mind, how would we write middleware to handle JSON information sent via POST request?
 
-```
+```js
 const express = require('express')
 const app = express()
 const dreams = []
