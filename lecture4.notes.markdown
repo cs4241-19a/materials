@@ -172,5 +172,5 @@ new aconstructor()
 
 - All good information, but the most important point is probably that there is no built-in way to easily duplicate JS objects
 - `Object.assign()` will get you a shallow object, and that is good enough for many situations.
-
+- Show examples of crazy metaprogramming in Gibber
 
