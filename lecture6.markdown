@@ -16,7 +16,7 @@ Client: Send username / password to Passport >
     - AND also set cookie
   - if failed, redirect back to login page with reason for failure
 
-Client: Request some other piece of user information
+Client: Request some other piece of user information >
   - Once authenticated, all requests sent to the client will contain a session cookie!
   
 < Server: Using the session cookie received from the client, match each request to an internal table of authenticated users
