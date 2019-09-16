@@ -5,9 +5,6 @@
 - Extra credit is due by 11:59 PM today, 9/16
 - Using unique ids (uids) in client/server transactions
 
-
-OK, it does take a bit of setup to get three.js up and running. Here's a script that creates a camera, lights, and a spinning geometry.
-
 # Creative Coding: Canvas
 
 Most of the time when people discuss the `<canvas>` element, they're talking about the using it for 2D drawing in the browser. However, `<canvas>` is also the primary element used for 3D rendering as well. Unlike SVGs, `<canvas>` used raster rendering techniques, so the images it generates are typically not well-suited for high-resolution printing.
