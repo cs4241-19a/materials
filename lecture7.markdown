@@ -323,46 +323,54 @@ audioElement.play()
 
 ### All together now...
 
-```js
-// graphics setup
-document.body.innerHTML = ''
-const canvas = document.createElement( 'canvas' )
-document.body.appendChild( canvas )
-canvas.width = canvas.height = 512
-const ctx = canvas.getContext( '2d' )
+```html
+<!doctype html>
+<html lang='en'>
+  <head></head>
+  <body><button>click me</button></body>
+  <script>
+  const start = function() {
+    document.body.innerHTML = ''
+    const canvas = document.createElement( 'canvas' )
+    document.body.appendChild( canvas )
+    canvas.width = canvas.height = 512
+    const ctx = canvas.getContext( '2d' )
 
-// audio init
-const audioCtx = new AudioContext()
-const audioElement = document.createElement( 'audio' )
-document.body.appendChild( audioElement )
+    // audio init
+    const audioCtx = new AudioContext()
+    const audioElement = document.createElement( 'audio' )
+    document.body.appendChild( audioElement )
 
-// audio graph setup
-const analyser = audioCtx.createAnalyser()
-analyser.fftSize = 1024 // 512 bins
-const player = audioCtx.createMediaElementSource( audioElement )
-player.connect( audioCtx.destination )
-player.connect( analyser )
+    // audio graph setup
+    const analyser = audioCtx.createAnalyser()
+    analyser.fftSize = 1024 // 512 bins
+    const player = audioCtx.createMediaElementSource( audioElement )
+    player.connect( audioCtx.destination )
+    player.connect( analyser )
 
-audioElement.src = 'media/somefile.mp3'
-audioElement.play()
+    audioElement.src = 'http://127.0.0.1:20000/trumpet.wav'
+    audioElement.play()
 
-const results = new Uint8Array( analyser.frequencyBinCount )
+    const results = new Uint8Array( analyser.frequencyBinCount )
 
-draw = function() {
-  // temporal recursion, call tthe function in the future
-  window.requestAnimationFrame( draw )
-  
-  ctx.fillStyle = 'black' 
-  ctx.fillRect( 0,0,canvas.width,canvas.height )
-  ctx.fillStyle = 'white' 
-  
-  analyser.getByteFrequencyData( results )
-  
-  for( let i = 0; i < analyser.frequencyBinCount; i++ ) {
-    ctx.fillRect( i, 0, 1, results[i] ) // upside down
+    draw = function() {
+      // temporal recursion, call tthe function in the future
+      window.requestAnimationFrame( draw )
+      
+      ctx.fillStyle = 'black' 
+      ctx.fillRect( 0,0,canvas.width,canvas.height )
+      ctx.fillStyle = 'white' 
+      
+      analyser.getByteFrequencyData( results )
+      
+      for( let i = 0; i < analyser.frequencyBinCount; i++ ) {
+        ctx.fillRect( i, 0, 1, results[i] ) // upside down
+      }
+    }
+    draw()
   }
-}
 
-// must call draw to start the loop
-draw()
+  window.onload = ()=> document.querySelector('button').onclick = start
+  </script>
+</html>
 ```
