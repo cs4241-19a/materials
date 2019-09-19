@@ -2,6 +2,25 @@
 - We'll be doing some work with Promises in class today
 - Assignment #3 is due on Monday(!)
 
+# Quick Promise.all demo
+
+```js
+a = new Promise( (resolve, reject) => {
+  setTimeout( ()=> { console.log(500); resolve( 'data1' ) }, 500 )
+})
+
+b = new Promise( (resolve, reject) => {
+  setTimeout( ()=> { console.log(1000); resolve( 'data2' ) }, 1000 )
+})
+
+c = new Promise( (resolve, reject) => {
+  setTimeout( ()=> { console.log( 1500 ); resolve( 'data3' ) }, 1500 )
+})
+
+Promise.all( [a,b,c] ).then( console.log )
+```
+
+
 # Passport.js and user authentication
 [Passport.js](http://passportjs.org) provides a standardized way to authenticate users using a variety of different techniques. For this assignment, we are focusing on using username / password combinations that are stored in a database (for most of you, using lowdb).
 
