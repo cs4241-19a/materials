@@ -128,8 +128,8 @@ We can use the [update operators](http://mongodb.github.io/node-mongodb-native/3
 app.post( '/update', (req,res) => {
   collection
     .updateOne(
-      { _id:mongodb.ObjectID( res.body._id ) },
-      { $set:{ name:res.body.name } }
+      { _id:mongodb.ObjectID( req.body._id ) },
+      { $set:{ name:req.body.name } }
     )
     .then( result => res.json( result ) )
 })
