@@ -184,6 +184,7 @@ export default Header
 
 Now let's insert that into our `App`:
 
+```js
 import React from 'react'
 import Header from './Header'
 import './App.css';
