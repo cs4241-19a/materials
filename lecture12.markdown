@@ -7,7 +7,7 @@ module.exports = {
   add( n1, n2 ) { return n1 + n2 },
   sub( n1, n2 ) { return n1 - n2 },
   mul( n1, n2 ) { return n1 * n2 },
-  div( n1, n2 ) { return n1 / n2 )}
+  div( n1, n2 ) { return n1 / n2 }
 }
 ```
 
@@ -184,6 +184,7 @@ export default Header
 
 Now let's insert that into our `App`:
 
+```js
 import React from 'react'
 import Header from './Header'
 import './App.css';
@@ -208,7 +209,7 @@ OK! We're now passing data between multiple components that we've defined. Excel
 
 These property values are not allowed to change over time. In order have dynamic values, we must create `state`. Even state is basically immutable; in order to "change" it we have to reassign an entirely new object to the state of a component... we cannot modify properties of a components state directly. In order to use state, we need to define constructor and initialize it.
 
-```
+```js
 import React from 'react'
 import './App.css'
 
