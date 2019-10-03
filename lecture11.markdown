@@ -112,7 +112,7 @@ need to wrap the id value using the `mongodb.ObjectID()` function in order to co
 use [query operators](https://docs.mongodb.com/manual/reference/operator/query/#query-selectors) to find
 particular documents for removal that match specified conditions.
 
-```
+```js
 // assumes req.body takes form { _id:5d91fb30f3f81b282d7be0dd } etc.
 app.post( '/remove', (req,res) => {
   collection
@@ -124,12 +124,12 @@ app.post( '/remove', (req,res) => {
 ### Add a route to update a document
 We can use the [update operators](http://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html) to apply a variety of transformations to a document:
 
-```
+```js
 app.post( '/update', (req,res) => {
   collection
     .updateOne(
-      { _id:mongodb.ObjectID( res.body._id ) },
-      { $set:{ name:res.body.name } }
+      { _id:mongodb.ObjectID( req.body._id ) },
+      { $set:{ name:req.body.name } }
     )
     .then( result => res.json( result ) )
 })
