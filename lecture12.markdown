@@ -17,7 +17,7 @@ Really, you don't *need* anything extra in JavaScript to run unit tests except f
 
 ```js
 const assert = require( 'assert' )
-const math   = require( 'math' )
+const math   = require( './math.js' )
 
 assert.equal( math.add( n1, n2 ), n1 + n2, 'it cannot add' )
 assert.equal( math.sub( n1, n2 ), n1 - n2, 'it cannot sub' )
@@ -235,3 +235,83 @@ export default App
 ```
 
 In the. above example, we define a `tick` method that calls React's `.setState` method. Note that we pass `setState` an entirely new object representing the current state of our component. If you look at your page now, you should see that the number increments around once a second. The HTML is automatically update to reflect the current state.
+
+# Typescript
+
+```js
+import React from 'react';
+import './App.css';
+
+interface TodoProps { 
+  name:string, 
+  completed:boolean, 
+  onclick: (name:string, checked:boolean) => void 
+}
+
+class Todo extends React.Component< TodoProps > {
+  render() {
+    return <li>{this.props.name} : 
+      <input type="checkbox" defaultChecked={this.props.completed} onChange={ e => this.change(e) }/>
+    </li>
+  }
+  change(e: {target:any}) {
+    this.props.onclick( this.props.name, e.target.checked )
+  }
+}
+
+let headers: any = { method:'get', 'no-cors':true }
+class App extends React.Component<{}, { todos:Array<Todo> }> {
+  constructor( props: any ) {
+    super( props )
+    this.state = { todos:[] }
+    this.load()
+  }
+
+  load() {
+    fetch( '/read', headers )
+      .then( response => response.json() )
+      .then( json => {
+         this.setState({ todos:json }) 
+      })
+  }
+
+  toggle( name:string, completed:boolean ) {
+    fetch( '/change', {
+      method:'POST',
+      body: JSON.stringify({ name, completed }),
+      headers: { 'Content-Type': 'application/json' }
+    })
+  }
+ 
+  add() {
+    const value:string = document.querySelector('input')!.value
+
+    fetch( '/add', { 
+      method:'POST',
+      body: JSON.stringify({ name:value, completed:false }),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then( response => response.json() )
+    .then( json => {
+       this.setState({ todos:json }) 
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+      <input type='text' /><button onClick={ e => this.add()}>add</button>
+        <ul>
+          { 
+            this.state.todos.map( (todo:any,i) => {
+              return <Todo key={i} name={todo.name} completed={todo.completed} onclick={ this.toggle } />;
+            }) 
+          }
+       </ul> 
+      </div>
+    )
+  }
+}
+
+export default App;
+```
